@@ -7,7 +7,9 @@ mongoose.Promise = Promise;
 ////localhost:27017/scraper
 //mongodb://heroku_11n5hz78:heroku_11n5hz78@ds017185.mlab.com:17185/heroku_11n5hz78"
 // Database configuration with mongoose
-mongoose.connect("mongodb://heroku_11n5hz78:heroku_11n5hz78@ds017185.mlab.com:17185/heroku_11n5hz78");
+// process.env.MONGODB || 'mongodb://localhost:27017/scraper'
+ var mydb = process.env.MONGODB || "mongodb://heroku_tgz542jr:heroku_tgz542jr@ds017185.mlab.com:17185/heroku_tgz542jr"
+mongoose.connect(mydb);
 var db = mongoose.connection;
 
 // Show any mongoose errors
