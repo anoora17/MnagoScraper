@@ -5,6 +5,8 @@
 		<meta http-equiv="X-UA-Compatible" content="IE=edge">
 <link rel="stylesheet" href="/css/bootstrap.min.css">
 <link rel="stylesheet" type="text/css" href="/css/style.css">
+<link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
 
 
 		<title>{{Scarper}}</title>
@@ -38,10 +40,16 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/bootbox.js/4.4.0/bootbox.min.js"></script>
    
     <script>
-        $(document).on("click", ".alert", function(e) {
-            bootbox.alert("Item deleted", function() {
-                console.log("Alert Callback");
-            });
+        $(document).on("click", "note", function(e) {
+            bootbox.prompt({
+            title: "Notes",
+            inputType: 'textarea',
+            callback: function (result) {
+
+              console.log(result);
+
+    }
+});
         });
     </script>
 

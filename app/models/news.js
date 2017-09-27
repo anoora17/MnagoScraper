@@ -1,5 +1,6 @@
 var mongoose = require("mongoose");
-
+// require the connection
+var db = require("../config/connection");
 var Schema = mongoose.Schema;
 
 var newsSchema = new Schema({

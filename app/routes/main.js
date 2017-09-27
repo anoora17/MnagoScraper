@@ -119,11 +119,15 @@ router.get("/save/:id", function(req, res) {
 });
 
 router.post("/save", function(req, res){
-var savedArt = JSON.stringify(req.body.title)
+var savedArt = JSON.stringify(req.body)
 console.log("///////////////"+ savedArt +"////////////////");
 
+var savedItems = {
+   title:req.body.title.trim(),
+   link:req.body.link
+} 
 
-var newNews = new News(req.body);
+var newNews = new News(savedItems);
 newNews.save(function(err, data){
 
   if(err) { 
@@ -150,17 +154,20 @@ if(err) {
 })
 
 
-router.post("/delete/:title", function(req, res){
+router.post("/delete", function(req, res){
 
- var title = req.body
- console.log("$$$$$$$$$$$$"+JSON.stringify(req.body)+"$$$$$$$$$$$$") 
+ var title = req.body.title
+ console.log("$$$$$$$$$$$$"+JSON.stringify(title)+"$$$$$$$$$$$$") 
 
-News.find({title:title}, function(err, data){
-if(err) { 
+News.remove({title:title}, function(err, data){
+
+    if(err) { 
     console.log(err)
       }
+
     else { 
-    res.render("saved", {myitems: data})
+  
+    res.redirect("/mysavedItem")
         }
     });
 })

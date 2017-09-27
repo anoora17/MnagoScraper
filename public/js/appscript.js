@@ -1,3 +1,1 @@
 
-// to seve clicked items
-
