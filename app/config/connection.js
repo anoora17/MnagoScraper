@@ -4,10 +4,10 @@ var mongoose = require('mongoose');
 
 // Set mongoose to leverage built in JavaScript ES6 Promises
 mongoose.Promise = Promise;
-
-
+////localhost:27017/scraper
+//mongodb://heroku_11n5hz78:heroku_11n5hz78@ds017185.mlab.com:17185/heroku_11n5hz78"
 // Database configuration with mongoose
-mongoose.connect("mongodb://localhost:27017/scraper");
+mongoose.connect("mongodb://heroku_11n5hz78:heroku_11n5hz78@ds017185.mlab.com:17185/heroku_11n5hz78");
 var db = mongoose.connection;
 
 // Show any mongoose errors
