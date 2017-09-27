@@ -16,15 +16,15 @@ var app = express();
 
 
 app.set('views', 'views')
-      app.engine('hbs', exphbs({extname: '.hbs', defaultLayout: 'main'}));
-      app.set('view engine', '.hbs');
+app.engine('hbs', exphbs({extname: '.hbs', defaultLayout: 'main'}));
+app.set('view engine', '.hbs');
 
 app.use(logger('dev'));
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(cookieParser());
 // Static directory
-  app.use(express.static('./public'));
+app.use(express.static('./public'));
 app.use('/', index);
 //app.use('/users', users);
 

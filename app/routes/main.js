@@ -50,15 +50,15 @@ router.get("/scrape",(req, res) => {
     });
      }
   });
-  // Tell the browser that we finished scraping the text
+
   res.render('dashboard', {title:"scraping completed"})
 });
 
 // This will get the articles we scraped from the mongoDB
 router.get("/articles", function(req, res) {
-  // Grab every doc in the Articles array
+  // Grab every doc in the Articles db
   Article.find({}, function(error, doc) {
-    // Log any errors
+   
     if (error) {
       console.log(error);
     }
@@ -96,9 +96,12 @@ router.get("/articles", function(req, res) {
     }
   });
 });
+
+
+
 router.get("/save/:id", function(req, res) {
   // Using the id passed in the id parameter, prepare a query that finds the matching one in our db...
-  console.log("*************"+req+ "*************************")
+  console.log("*************"+req.papams.id+ "*************************")
   Article.findOne({ "_id": req.params.id })
   // ..and populate all of the notes associated with it
   .populate("news")
@@ -115,21 +118,54 @@ router.get("/save/:id", function(req, res) {
   });
 });
 
-router.post("/saved", function(req, res){
+router.post("/save", function(req, res){
+var savedArt = JSON.stringify(req.body.title)
+console.log("///////////////"+ savedArt +"////////////////");
+
 
 var newNews = new News(req.body);
 newNews.save(function(err, data){
 
   if(err) { 
     console.log(err)
-  }
-    else { }
+      }
+    else { 
+    console.log(data)
+        }
+    });
+
+});
+
+
+router.get("/mysavedItem", function(req,res){
+
+News.find({}, function(err, data){
+if(err) { 
+    console.log(err)
+      }
+    else { 
+    res.render("saved", {myitems: data})
+        }
+    });
 })
 
 
-res.render('saved')
+router.post("/delete/:title", function(req, res){
 
+ var title = req.body
+ console.log("$$$$$$$$$$$$"+JSON.stringify(req.body)+"$$$$$$$$$$$$") 
 
+News.find({title:title}, function(err, data){
+if(err) { 
+    console.log(err)
+      }
+    else { 
+    res.render("saved", {myitems: data})
+        }
+    });
 })
+
+
+
 
 module.exports = router;

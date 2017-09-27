@@ -7,7 +7,7 @@ var newsSchema = new Schema({
 	    type: String
 	  },
 	  // Just a string
-	  body: {
+	  link: {
 	    type: String
 	  }
 	});

@@ -17,16 +17,18 @@
 
 	<div class="container">
 		
-	<div class="panel panel-danger">
+	<div class="panel panel-primary">
 		{{#each articles as |article|}}
 	
 		    <div class="panel-heading">
 			    <h1 class="panel-title" name="article_title" href ="{{article.link}}"> <a href ="{{article.link}}"> {{article.title}}</a></h1>
 			    </div>
 			    <div class="panel-body" id="link" name="article_link" >
-			    <a href ="{{article.link}}" ><h3> {{article.id}} </h3></a> <h3>{{article.title}}</h3>
-			    <form id="save">
-			    <input id = "artid" name="article_id" value="{{article.id}}" type="hidden" />
+			    <a href ="{{article.link}}" ></a> <h2>{{article.title}}</h2>
+			    <form id="save" action="/save" method="POST">
+			    <input id = "artid" name="title" value="{{article.title}}" type="hidden" />
+			    <input  name="body" value="{{article.link}}" type="hidden" />
+			    <input  name="body" value="{{article.id}}" type="hidden" />
 			    <button   type ="submit" class="btn btn-success">
 			    </form>
 	            <span class="glyphicon glyphicon-bookmark" aria-hidden="true"></span> Save this Articls
